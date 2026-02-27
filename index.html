@@ -345,6 +345,320 @@
         .footer-inner{flex-direction:column;align-items:flex-start}
         .test-card{padding:28px 20px}
     }
+
+    /* ════════════════════════════════════════
+       MINI VSL — SLIDESHOW ANIMADO
+    ════════════════════════════════════════ */
+    .vsl-section{
+        background:var(--ink);
+        padding:64px 24px;
+        position:relative;
+        overflow:hidden;
+    }
+    .vsl-section::before{
+        content:'';
+        position:absolute;
+        inset:0;
+        background-image:linear-gradient(rgba(29,185,84,.03) 1px,transparent 1px),
+                         linear-gradient(90deg,rgba(29,185,84,.03) 1px,transparent 1px);
+        background-size:40px 40px;
+        pointer-events:none;
+    }
+
+    .vsl-wrapper{
+        max-width:780px;
+        margin:0 auto;
+        position:relative;
+        z-index:2;
+    }
+
+    /* Top label */
+    .vsl-label{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        margin-bottom:28px;
+    }
+    .vsl-label-text{
+        font-size:.68rem;
+        letter-spacing:.1em;
+        text-transform:uppercase;
+        color:rgba(255,255,255,.35);
+        font-family:'Press Start 2P',monospace;
+    }
+    .vsl-rec-dot{
+        width:8px;height:8px;
+        border-radius:50%;
+        background:var(--red);
+        animation:blink .9s infinite;
+        flex-shrink:0;
+    }
+
+    /* The screen / player frame */
+    .vsl-player{
+        background:#000;
+        border-radius:16px;
+        overflow:hidden;
+        position:relative;
+        aspect-ratio:16/9;
+        box-shadow:0 0 0 1px rgba(255,255,255,.06),
+                   0 32px 80px rgba(0,0,0,.7),
+                   0 0 60px rgba(29,185,84,.06);
+        cursor:pointer;
+    }
+
+    /* CRT scanline effect on player */
+    .vsl-player::after{
+        content:'';
+        position:absolute;
+        inset:0;
+        background:repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(0,0,0,.07) 2px,
+            rgba(0,0,0,.07) 4px
+        );
+        pointer-events:none;
+        z-index:10;
+        border-radius:16px;
+    }
+
+    /* Individual slides */
+    .vsl-slide{
+        position:absolute;
+        inset:0;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:48px 56px;
+        opacity:0;
+        transition:opacity .6s ease;
+        text-align:center;
+        pointer-events:none;
+    }
+    .vsl-slide.active{
+        opacity:1;
+        pointer-events:auto;
+    }
+
+    /* Slide backgrounds per type */
+    .vsl-slide.s-hook    { background:linear-gradient(135deg,#0a0a0a 0%,#111 100%); }
+    .vsl-slide.s-pain    { background:linear-gradient(135deg,#120505 0%,#0d0d0d 100%); }
+    .vsl-slide.s-agitate { background:linear-gradient(135deg,#0d0000 0%,#0a0a0a 100%); }
+    .vsl-slide.s-reveal  { background:linear-gradient(135deg,#001a0a 0%,#020d05 100%); }
+    .vsl-slide.s-proof   { background:linear-gradient(135deg,#030d18 0%,#060d0a 100%); }
+    .vsl-slide.s-cta     { background:linear-gradient(135deg,#001505 0%,#001a08 100%); }
+
+    /* Slide content styles */
+    .vsl-slide-num{
+        font-family:'Press Start 2P',monospace;
+        font-size:.52rem;
+        color:rgba(255,255,255,.2);
+        letter-spacing:.08em;
+        margin-bottom:20px;
+        display:block;
+    }
+    .vsl-slide-icon{
+        font-size:clamp(2.4rem,5vw,3.6rem);
+        margin-bottom:20px;
+        display:block;
+        filter:drop-shadow(0 0 20px currentColor);
+        animation:vslIconFloat 3s ease-in-out infinite;
+    }
+    @keyframes vslIconFloat{
+        0%,100%{transform:translateY(0) scale(1)}
+        50%{transform:translateY(-6px) scale(1.04)}
+    }
+
+    .vsl-headline{
+        font-family:'Bebas Neue',sans-serif;
+        font-size:clamp(1.8rem,4.5vw,3.4rem);
+        line-height:1.0;
+        letter-spacing:.02em;
+        color:#fff;
+        margin-bottom:14px;
+    }
+    .vsl-headline .hl-green{ color:var(--green); }
+    .vsl-headline .hl-red  { color:var(--red); }
+
+    .vsl-body{
+        font-size:clamp(.82rem,1.8vw,1rem);
+        color:rgba(255,255,255,.55);
+        line-height:1.72;
+        max-width:520px;
+        margin:0 auto;
+    }
+    .vsl-body strong{ color:rgba(255,255,255,.85); }
+
+    /* Animated highlight bar */
+    .vsl-highlight{
+        display:inline-block;
+        background:rgba(29,185,84,.12);
+        border:1px solid rgba(29,185,84,.3);
+        border-radius:6px;
+        padding:10px 20px;
+        font-size:clamp(.88rem,2vw,1.05rem);
+        color:var(--green);
+        font-weight:600;
+        margin-top:18px;
+        letter-spacing:.02em;
+    }
+
+    /* Stat burst for proof slide */
+    .vsl-stat-row{
+        display:flex;
+        gap:24px;
+        justify-content:center;
+        flex-wrap:wrap;
+        margin-top:18px;
+    }
+    .vsl-stat{
+        text-align:center;
+    }
+    .vsl-stat-n{
+        font-family:'Bebas Neue',sans-serif;
+        font-size:clamp(2rem,4vw,3rem);
+        color:var(--green);
+        line-height:1;
+        letter-spacing:.02em;
+    }
+    .vsl-stat-l{
+        font-size:.72rem;
+        color:rgba(255,255,255,.4);
+        margin-top:4px;
+        line-height:1.3;
+    }
+
+    /* CTA slide button */
+    .vsl-cta-btn{
+        display:inline-flex;
+        align-items:center;
+        gap:10px;
+        background:var(--green);
+        color:#fff;
+        text-decoration:none;
+        font-weight:700;
+        font-size:clamp(.9rem,2vw,1.08rem);
+        padding:14px 32px;
+        border-radius:8px;
+        margin-top:22px;
+        box-shadow:0 6px 32px rgba(29,185,84,.4);
+        transition:all .25s;
+        animation:glowPulse 2.2s infinite;
+    }
+    .vsl-cta-btn:hover{
+        background:var(--green-dark);
+        transform:translateY(-2px);
+        box-shadow:0 12px 48px rgba(29,185,84,.55);
+    }
+
+    /* ── Progress bar ── */
+    .vsl-progress{
+        display:flex;
+        gap:5px;
+        margin-top:20px;
+        align-items:center;
+        justify-content:center;
+    }
+    .vsl-prog-seg{
+        height:3px;
+        flex:1;
+        background:rgba(255,255,255,.1);
+        border-radius:100px;
+        overflow:hidden;
+        max-width:80px;
+        cursor:pointer;
+        transition:opacity .2s;
+    }
+    .vsl-prog-seg:hover{ opacity:.7; }
+    .vsl-prog-fill{
+        height:100%;
+        width:0%;
+        background:var(--green);
+        border-radius:100px;
+        transition:width linear;
+    }
+    .vsl-prog-seg.done .vsl-prog-fill{ width:100%; }
+
+    /* ── Controls bar ── */
+    .vsl-controls{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        margin-top:14px;
+        padding:0 4px;
+    }
+    .vsl-ctrl-left{
+        display:flex;
+        align-items:center;
+        gap:10px;
+    }
+    .vsl-btn{
+        background:rgba(255,255,255,.07);
+        border:1px solid rgba(255,255,255,.1);
+        color:rgba(255,255,255,.6);
+        border-radius:6px;
+        padding:6px 14px;
+        font-size:.76rem;
+        cursor:pointer;
+        font-family:'DM Sans',sans-serif;
+        transition:all .2s;
+        display:flex;
+        align-items:center;
+        gap:6px;
+    }
+    .vsl-btn:hover{
+        background:rgba(255,255,255,.12);
+        color:#fff;
+        border-color:rgba(255,255,255,.2);
+    }
+    .vsl-btn.paused .icon-pause{ display:none; }
+    .vsl-btn.paused .icon-play{ display:block; }
+    .vsl-btn .icon-pause{ display:block; }
+    .vsl-btn .icon-play{ display:none; }
+
+    .vsl-slide-counter{
+        font-size:.74rem;
+        color:rgba(255,255,255,.3);
+        letter-spacing:.04em;
+    }
+
+    /* Swipe hint on mobile */
+    .vsl-swipe-hint{
+        display:none;
+        font-size:.68rem;
+        color:rgba(255,255,255,.2);
+        text-align:center;
+        margin-top:8px;
+        letter-spacing:.04em;
+    }
+
+    /* Vimeo-ready overlay (hidden until video URL set) */
+    .vsl-vimeo-ready{
+        display:none;
+        position:absolute;
+        inset:0;
+        z-index:20;
+        border-radius:16px;
+        overflow:hidden;
+    }
+    .vsl-vimeo-ready iframe{
+        width:100%;
+        height:100%;
+        border:none;
+    }
+    /* When a vimeo URL is set via JS, the overlay shows */
+    .vsl-player.has-video .vsl-vimeo-ready{ display:block; }
+    .vsl-player.has-video .vsl-slide     { display:none; }
+    .vsl-player.has-video ~ .vsl-controls { opacity:.4; pointer-events:none; }
+
+    @media(max-width:640px){
+        .vsl-slide{ padding:28px 24px; }
+        .vsl-swipe-hint{ display:block; }
+    }
     </style>
 </head>
 <body>
@@ -453,6 +767,172 @@
 
         </div>
     </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+  MINI VSL — SLIDESHOW ANIMADO
+  DotCom Secrets: Hook → Pain → Agitate → Reveal → Proof → CTA
+  Posición: entre Hero y Dolores para retener antes de scrollear.
+  ──────────────────────────────────────────
+  🎬 CUANDO TENGAS VIDEO EN VIMEO:
+  Descomenta la línea VIMEO_URL en el script
+  y el slideshow se reemplaza automáticamente.
+════════════════════════════════════════════ -->
+<section class="vsl-section" id="vsl">
+    <div class="vsl-wrapper">
+
+        <!-- Label superior -->
+        <div class="vsl-label">
+            <span class="vsl-rec-dot"></span>
+            <span class="vsl-label-text">Mini VSL — Mira esto primero</span>
+            <span class="vsl-rec-dot"></span>
+        </div>
+
+        <!-- Player frame -->
+        <div class="vsl-player" id="vslPlayer">
+
+            <!-- Vimeo ready overlay (se activa cuando configures la URL) -->
+            <div class="vsl-vimeo-ready" id="vslVimeo"></div>
+
+            <!-- ═══ SLIDE 1 — HOOK ═══
+                 DotCom: La primera imagen para el scroll.
+                 Pregunta que golpea directo. -->
+            <div class="vsl-slide s-hook active" data-duration="5000">
+                <span class="vsl-slide-num">01 / 06</span>
+                <span class="vsl-slide-icon" style="color:#fff">🔧</span>
+                <div class="vsl-headline">
+                    ¿Cuánto dinero<br>
+                    perdiste <span class="hl-red">este mes</span><br>
+                    sin darte cuenta?
+                </div>
+                <p class="vsl-body">
+                    No por trabajar poco. No por falta de clientes.<br>
+                    <strong>Por no tener el sistema correcto.</strong>
+                </p>
+            </div>
+
+            <!-- ═══ SLIDE 2 — PAIN ═══
+                 DotCom: Nombra el dolor más agudo. -->
+            <div class="vsl-slide s-pain" data-duration="5500">
+                <span class="vsl-slide-num">02 / 06</span>
+                <span class="vsl-slide-icon" style="color:#E8311A">😤</span>
+                <div class="vsl-headline">
+                    Un cliente reclama.<br>
+                    Tú no tienes<br>
+                    <span class="hl-red">cómo probarlo.</span>
+                </div>
+                <p class="vsl-body">
+                    Entregaste el equipo perfecto.<br>
+                    Él dice que llegó dañado.<br>
+                    <strong>Sin evidencia, toca ceder. Toca pagar.</strong>
+                </p>
+                <div class="vsl-highlight">$1M — $3M por reclamación injusta</div>
+            </div>
+
+            <!-- ═══ SLIDE 3 — AGITATE ═══
+                 DotCom: Restregar la herida. -->
+            <div class="vsl-slide s-agitate" data-duration="5500">
+                <span class="vsl-slide-num">03 / 06</span>
+                <span class="vsl-slide-icon" style="color:#f59e0b">📒</span>
+                <div class="vsl-headline">
+                    Cuadernos.<br>
+                    Papelitos.<br>
+                    <span class="hl-red">Excel que nadie actualiza.</span>
+                </div>
+                <p class="vsl-body">
+                    Así no puedes crecer.<br>
+                    Así no puedes delegar.<br>
+                    <strong>Así no puedes ganar lo que mereces.</strong>
+                </p>
+            </div>
+
+            <!-- ═══ SLIDE 4 — REVEAL ═══
+                 DotCom: La solución existe — sin revelar el cómo. -->
+            <div class="vsl-slide s-reveal" data-duration="5000">
+                <span class="vsl-slide-num">04 / 06</span>
+                <span class="vsl-slide-icon" style="color:var(--green)">🔒</span>
+                <div class="vsl-headline">
+                    Hay una forma<br>
+                    de que eso<br>
+                    <span class="hl-green">nunca vuelva a pasar.</span>
+                </div>
+                <p class="vsl-body">
+                    No es un Excel mejorado.<br>
+                    No es un software genérico.<br>
+                    <strong>Es un sistema diseñado exactamente para ti.</strong>
+                </p>
+            </div>
+
+            <!-- ═══ SLIDE 5 — PROOF ═══
+                 DotCom: Números reales generan fe. -->
+            <div class="vsl-slide s-proof" data-duration="5500">
+                <span class="vsl-slide-num">05 / 06</span>
+                <span class="vsl-slide-icon" style="color:var(--green)">📈</span>
+                <div class="vsl-headline">
+                    Ya lo usan<br>
+                    <span class="hl-green">+35 laboratorios</span><br>
+                    en 4 países.
+                </div>
+                <div class="vsl-stat-row">
+                    <div class="vsl-stat">
+                        <div class="vsl-stat-n">+35</div>
+                        <div class="vsl-stat-l">Labs activos<br>Col · Chi · Per · Ecu</div>
+                    </div>
+                    <div class="vsl-stat">
+                        <div class="vsl-stat-n">48h</div>
+                        <div class="vsl-stat-l">Implementación<br>sin estrés</div>
+                    </div>
+                    <div class="vsl-stat">
+                        <div class="vsl-stat-n">$3M</div>
+                        <div class="vsl-stat-l">COP recuperados<br>por reclamación</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ═══ SLIDE 6 — CTA ═══
+                 DotCom: Una sola acción. Fricción cero. -->
+            <div class="vsl-slide s-cta" data-duration="99999">
+                <span class="vsl-slide-num">06 / 06</span>
+                <span class="vsl-slide-icon" style="color:var(--green)">🚀</span>
+                <div class="vsl-headline">
+                    ¿Listo para ver<br>
+                    <span class="hl-green">cómo funciona</span><br>
+                    en tu negocio?
+                </div>
+                <p class="vsl-body">
+                    Demo en vivo. Gratis. Sin compromiso.<br>
+                    <strong>En minutos lo ves todo — y decides tú.</strong>
+                </p>
+                <a class="vsl-cta-btn"
+                   href="https://calendar.app.google/RtZqsytYkhhLRdze7"
+                   target="_blank" rel="noopener noreferrer"
+                   onclick="trackEvent('vsl','click','VSL Slide CTA')">
+                    Agendar demo gratis →
+                </a>
+            </div>
+
+        </div><!-- /vsl-player -->
+
+        <!-- Progress segments -->
+        <div class="vsl-progress" id="vslProgress"></div>
+
+        <!-- Controls -->
+        <div class="vsl-controls">
+            <div class="vsl-ctrl-left">
+                <button class="vsl-btn" id="vslPlayPause" onclick="vslTogglePause()">
+                    <span class="icon-pause">⏸ Pausar</span>
+                    <span class="icon-play">▶ Reanudar</span>
+                </button>
+                <button class="vsl-btn" onclick="vslPrev()">← Anterior</button>
+                <button class="vsl-btn" onclick="vslNext()">Siguiente →</button>
+            </div>
+            <span class="vsl-slide-counter" id="vslCounter">1 / 6</span>
+        </div>
+
+        <p class="vsl-swipe-hint">← desliza para navegar →</p>
+
+    </div><!-- /vsl-wrapper -->
 </section>
 
 
@@ -915,7 +1395,7 @@
         <div class="footer-links">
             <a href="https://wa.link/kzkc0n" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             <a href="https://calendar.app.google/RtZqsytYkhhLRdze7" target="_blank" rel="noopener noreferrer">Agendar Demo</a>
-            <a href="mailto:hola@monkeysapps.online">Email</a>
+            <a href="/cdn-cgi/l/email-protection#1d7572717c5d7072737678646e7c6d6d6e33727371747378">Email</a>
         </div>
         <div class="footer-copy">
             © 2026 MONKEYS Lab · Software para laboratorios técnicos
@@ -940,7 +1420,143 @@
 <!-- ═══════════════════════════════════════
   SCRIPTS
 ═══════════════════════════════════════ -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ════════════════════════════════════════
+   MINI VSL ENGINE
+   ────────────────────────────────────────
+   🎬 PARA ACTIVAR VIMEO cuando tengas video:
+   Descomenta VIMEO_URL y pon tu ID de Vimeo.
+   El slideshow se oculta automáticamente.
+════════════════════════════════════════ */
+
+// const VIMEO_URL = 'https://player.vimeo.com/video/TU_ID_AQUI?autoplay=1&title=0&byline=0&portrait=0';
+
+(function(){
+    const slides      = Array.from(document.querySelectorAll('.vsl-slide'));
+    const progressEl  = document.getElementById('vslProgress');
+    const counterEl   = document.getElementById('vslCounter');
+    const playPauseEl = document.getElementById('vslPlayPause');
+    const player      = document.getElementById('vslPlayer');
+    const vimeoEl     = document.getElementById('vslVimeo');
+
+    let current   = 0;
+    let paused    = false;
+    let timer     = null;
+    let fillTimer = null;
+    let fillStart = null;
+    let fillDur   = 0;
+    let fillEl    = null;
+
+    // ── Vimeo swap ──
+    if(typeof VIMEO_URL !== 'undefined' && VIMEO_URL) {
+        vimeoEl.innerHTML = `<iframe src="${VIMEO_URL}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+        player.classList.add('has-video');
+        return; // stop slideshow engine
+    }
+
+    // ── Build progress segments ──
+    slides.forEach((_, i) => {
+        const seg = document.createElement('div');
+        seg.className = 'vsl-prog-seg';
+        seg.innerHTML = '<div class="vsl-prog-fill"></div>';
+        seg.addEventListener('click', () => goTo(i));
+        progressEl.appendChild(seg);
+    });
+
+    const segs = Array.from(progressEl.querySelectorAll('.vsl-prog-seg'));
+
+    function getSegs(){ return Array.from(progressEl.querySelectorAll('.vsl-prog-seg')); }
+
+    function goTo(idx){
+        // Mark all before as done
+        getSegs().forEach((s,i) => {
+            s.classList.remove('done');
+            s.querySelector('.vsl-prog-fill').style.width = i < idx ? '100%' : '0%';
+        });
+        slides.forEach(s => s.classList.remove('active'));
+        current = idx;
+        slides[current].classList.add('active');
+        counterEl.textContent = `${current+1} / ${slides.length}`;
+        if(!paused) startSegTimer();
+    }
+
+    function startSegTimer(){
+        clearTimeout(timer);
+        cancelAnimationFrame(fillTimer);
+
+        const seg  = getSegs()[current];
+        const fill = seg.querySelector('.vsl-prog-fill');
+        fillDur    = parseInt(slides[current].dataset.duration) || 5000;
+        fillStart  = performance.now();
+        fillEl     = fill;
+
+        function animate(now){
+            if(paused) return;
+            const elapsed = now - fillStart;
+            const pct     = Math.min(elapsed / fillDur * 100, 100);
+            fill.style.width = pct + '%';
+            if(pct < 100){
+                fillTimer = requestAnimationFrame(animate);
+            } else {
+                seg.classList.add('done');
+                if(current < slides.length - 1){
+                    goTo(current + 1);
+                }
+            }
+        }
+        fillTimer = requestAnimationFrame(animate);
+    }
+
+    window.vslTogglePause = function(){
+        paused = !paused;
+        playPauseEl.classList.toggle('paused', paused);
+        if(!paused){
+            // Resume from where fill left off
+            const fill   = getSegs()[current].querySelector('.vsl-prog-fill');
+            const pctNow = parseFloat(fill.style.width) || 0;
+            const remaining = fillDur * (1 - pctNow/100);
+            fillStart = performance.now() - (fillDur - remaining);
+            startSegTimer();
+        } else {
+            cancelAnimationFrame(fillTimer);
+        }
+    };
+
+    window.vslNext = function(){
+        if(current < slides.length - 1) goTo(current + 1);
+    };
+
+    window.vslPrev = function(){
+        if(current > 0) goTo(current - 1);
+    };
+
+    // ── Touch/swipe on mobile ──
+    let touchStartX = 0;
+    player.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
+    player.addEventListener('touchend',   e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        if(Math.abs(dx) > 40){ dx < 0 ? vslNext() : vslPrev(); }
+    }, {passive:true});
+
+    // ── Keyboard ──
+    document.addEventListener('keydown', e => {
+        if(e.key === 'ArrowRight') vslNext();
+        if(e.key === 'ArrowLeft')  vslPrev();
+        if(e.key === ' '){ e.preventDefault(); vslTogglePause(); }
+    });
+
+    // ── Start ──
+    goTo(0);
+
+    // Auto-track when VSL section is visible
+    const vslObs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if(e.isIntersecting){ trackEvent('vsl','view','VSL Section visible'); vslObs.disconnect(); }
+        });
+    }, {threshold:.5});
+    vslObs.observe(document.getElementById('vsl'));
+})();
+
 /* ── SCROLL REVEAL ── */
 const allReveal = document.querySelectorAll('.scroll-reveal, .sr-left, .sr-right');
 const ro = new IntersectionObserver((entries) => {
@@ -1053,12 +1669,4 @@ function trackEvent(category, action, label) {
 /* ── DEEP SCROLL TRACKING ── */
 let deepScrolled = false;
 window.addEventListener('scroll', () => {
-    if(!deepScrolled && window.scrollY / document.body.scrollHeight > 0.5) {
-        trackEvent('engagement','scroll_50','50% de la página');
-        deepScrolled = true;
-    }
-}, { passive: true });
-</script>
-
-</body>
-</html>
+    if(!deepScrolled && window.scrollY / document.body.scrollHeight > 0.5)
