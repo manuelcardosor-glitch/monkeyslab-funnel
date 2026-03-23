@@ -346,319 +346,152 @@
         .test-card{padding:28px 20px}
     }
 
-    /* ════════════════════════════════════════
-       MINI VSL — SLIDESHOW ANIMADO
-    ════════════════════════════════════════ */
-    .vsl-section{
-        background:var(--ink);
-        padding:64px 24px;
-        position:relative;
-        overflow:hidden;
-    }
-    .vsl-section::before{
-        content:'';
-        position:absolute;
-        inset:0;
-        background-image:linear-gradient(rgba(29,185,84,.03) 1px,transparent 1px),
-                         linear-gradient(90deg,rgba(29,185,84,.03) 1px,transparent 1px);
-        background-size:40px 40px;
-        pointer-events:none;
-    }
+    /* ════ VSL SECTION ════ */
+    .vsl-section{padding:100px 24px;background:#fff;border-top:1px solid var(--border)}
+    .vsl-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;max-width:1080px;margin:0 auto}
+    .vsl-left{}
+    .vsl-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+    .vsl-eyebrow::before{content:'';width:20px;height:2px;background:var(--green);display:inline-block}
+    .vsl-left h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:.01em;line-height:1.0;margin-bottom:16px}
+    .vsl-left h2 em{font-style:normal;color:var(--green)}
+    .vsl-left p{font-size:.95rem;color:var(--muted);line-height:1.8;margin-bottom:20px}
+    .founder-card{display:flex;align-items:center;gap:14px;background:var(--paper);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-top:24px}
+    .founder-photo{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--green);flex-shrink:0;background:var(--border)}
+    .founder-photo-placeholder{width:56px;height:56px;border-radius:50%;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--green);flex-shrink:0;border:2px solid var(--green)}
+    .founder-info{}
+    .founder-name{font-weight:700;font-size:.9rem;color:var(--ink)}
+    .founder-role{font-size:.76rem;color:var(--muted);margin-top:2px;line-height:1.4}
+    .founder-badge{display:inline-block;background:rgba(29,185,84,.1);color:var(--green-dark);font-size:.64rem;font-weight:700;padding:2px 8px;border-radius:100px;margin-top:5px;letter-spacing:.04em;border:1px solid rgba(29,185,84,.2)}
 
-    .vsl-wrapper{
-        max-width:780px;
-        margin:0 auto;
-        position:relative;
-        z-index:2;
-    }
+    /* VIDEO PLAYER */
+    .vsl-right{}
+    .vsl-player{background:var(--ink);border-radius:16px;overflow:hidden;position:relative;aspect-ratio:16/9;box-shadow:0 20px 60px rgba(0,0,0,.2)}
+    .vsl-player iframe{width:100%;height:100%;border:none;display:block}
+    .vsl-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;cursor:pointer;background:linear-gradient(135deg,#111 0%,#1a1a1a 100%);position:relative;overflow:hidden}
+    .vsl-placeholder::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(29,185,84,.08) 0%,transparent 65%)}
+    .vsl-play-btn{width:72px;height:72px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 8px rgba(29,185,84,.2),0 8px 32px rgba(29,185,84,.4);transition:transform .25s,box-shadow .25s;position:relative;z-index:1}
+    .vsl-play-btn:hover{transform:scale(1.08);box-shadow:0 0 0 14px rgba(29,185,84,.15),0 12px 40px rgba(29,185,84,.5)}
+    .vsl-play-btn svg{width:28px;height:28px;fill:#fff;margin-left:4px}
+    .vsl-placeholder-text{color:rgba(255,255,255,.5);font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;position:relative;z-index:1}
+    .vsl-placeholder-tag{position:absolute;top:14px;left:14px;background:var(--green);color:#fff;font-size:.62rem;font-weight:700;padding:4px 10px;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;z-index:1}
+    .vsl-caption{text-align:center;font-size:.78rem;color:var(--muted);margin-top:12px;line-height:1.5}
 
-    /* Top label */
-    .vsl-label{
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        gap:10px;
-        margin-bottom:28px;
-    }
-    .vsl-label-text{
-        font-size:.68rem;
-        letter-spacing:.1em;
-        text-transform:uppercase;
-        color:rgba(255,255,255,.35);
-        font-family:'Press Start 2P',monospace;
-    }
-    .vsl-rec-dot{
-        width:8px;height:8px;
-        border-radius:50%;
-        background:var(--red);
-        animation:blink .9s infinite;
-        flex-shrink:0;
-    }
+    @media(max-width:900px){.vsl-inner{grid-template-columns:1fr;gap:40px}}
 
-    /* The screen / player frame */
-    .vsl-player{
-        background:#000;
-        border-radius:16px;
-        overflow:hidden;
-        position:relative;
-        aspect-ratio:16/9;
-        box-shadow:0 0 0 1px rgba(255,255,255,.06),
-                   0 32px 80px rgba(0,0,0,.7),
-                   0 0 60px rgba(29,185,84,.06);
-        cursor:pointer;
-    }
+    /* ════ NEW TEST STYLES (prefixed mk- to avoid conflicts) ════ */
+    .mk-test-section{padding:100px 24px;background:var(--paper);position:relative;overflow:hidden}
+    .mk-test-section::before{content:'';position:absolute;top:-80px;right:-80px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(29,185,84,.07) 0%,transparent 70%);pointer-events:none}
+    .mk-test-header{text-align:center;max-width:600px;margin:0 auto 48px}
+    .mk-test-label{display:inline-flex;align-items:center;gap:8px;background:rgba(29,185,84,.1);border:1px solid rgba(29,185,84,.25);color:var(--green-dark);font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 14px;border-radius:100px;margin-bottom:18px}
+    .mk-test-header h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4.5vw,3.6rem);line-height:1.0;letter-spacing:.01em;margin-bottom:12px}
+    .mk-test-header p{font-size:.97rem;color:var(--muted);line-height:1.72}
 
-    /* CRT scanline effect on player */
-    .vsl-player::after{
-        content:'';
-        position:absolute;
-        inset:0;
-        background:repeating-linear-gradient(
-            0deg,
-            transparent,
-            transparent 2px,
-            rgba(0,0,0,.07) 2px,
-            rgba(0,0,0,.07) 4px
-        );
-        pointer-events:none;
-        z-index:10;
-        border-radius:16px;
-    }
+    .mk-card{background:#fff;border:1px solid var(--border);border-radius:20px;padding:44px 40px;max-width:720px;margin:0 auto;box-shadow:0 4px 40px rgba(0,0,0,.06)}
+    @media(max-width:560px){.mk-card{padding:28px 20px;border-radius:16px}}
 
-    /* Individual slides */
-    .vsl-slide{
-        position:absolute;
-        inset:0;
-        display:flex;
-        flex-direction:column;
-        align-items:center;
-        justify-content:center;
-        padding:48px 56px;
-        opacity:0;
-        transition:opacity .6s ease;
-        text-align:center;
-        pointer-events:none;
-    }
-    .vsl-slide.active{
-        opacity:1;
-        pointer-events:auto;
-    }
+    /* Progress */
+    .mk-prog-wrap{margin-bottom:36px}
+    .mk-prog-bg{background:var(--border);border-radius:100px;height:5px;overflow:hidden}
+    .mk-prog-fill{height:100%;background:var(--green);border-radius:100px;transition:width .5s cubic-bezier(.16,1,.3,1);width:0%}
+    .mk-prog-meta{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+    .mk-prog-label{font-size:.72rem;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+    .mk-prog-pct{font-size:.72rem;font-weight:700;color:var(--green)}
 
-    /* Slide backgrounds per type */
-    .vsl-slide.s-hook    { background:linear-gradient(135deg,#0a0a0a 0%,#111 100%); }
-    .vsl-slide.s-pain    { background:linear-gradient(135deg,#120505 0%,#0d0d0d 100%); }
-    .vsl-slide.s-agitate { background:linear-gradient(135deg,#0d0000 0%,#0a0a0a 100%); }
-    .vsl-slide.s-reveal  { background:linear-gradient(135deg,#001a0a 0%,#020d05 100%); }
-    .vsl-slide.s-proof   { background:linear-gradient(135deg,#030d18 0%,#060d0a 100%); }
-    .vsl-slide.s-cta     { background:linear-gradient(135deg,#001505 0%,#001a08 100%); }
+    /* Steps */
+    .mk-step{display:none}
+    .mk-step.mk-active{display:block;animation:fadeUp .4s ease both}
+    .mk-category{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:rgba(29,185,84,.08);border:1px solid rgba(29,185,84,.2);padding:3px 10px;border-radius:100px;margin-bottom:12px}
+    .mk-q{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.5rem,4vw,2.1rem);line-height:1.1;letter-spacing:.01em;margin-bottom:6px}
+    .mk-hint{font-size:.84rem;color:var(--muted);margin-bottom:22px;line-height:1.6;font-style:italic}
 
-    /* Slide content styles */
-    .vsl-slide-num{
-        font-family:'Press Start 2P',monospace;
-        font-size:.52rem;
-        color:rgba(255,255,255,.2);
-        letter-spacing:.08em;
-        margin-bottom:20px;
-        display:block;
-    }
-    .vsl-slide-icon{
-        font-size:clamp(2.4rem,5vw,3.6rem);
-        margin-bottom:20px;
-        display:block;
-        filter:drop-shadow(0 0 20px currentColor);
-        animation:vslIconFloat 3s ease-in-out infinite;
-    }
-    @keyframes vslIconFloat{
-        0%,100%{transform:translateY(0) scale(1)}
-        50%{transform:translateY(-6px) scale(1.04)}
-    }
+    /* Options */
+    .mk-options{display:flex;flex-direction:column;gap:10px}
+    .mk-opt{display:flex;align-items:flex-start;gap:13px;background:var(--paper);border:2px solid var(--border);border-radius:12px;padding:14px 18px;cursor:pointer;transition:all .2s;text-align:left;font-family:'DM Sans',sans-serif;font-size:.93rem;color:var(--ink);line-height:1.4}
+    .mk-opt:hover{border-color:var(--green);background:#fff}
+    .mk-opt.mk-sel{border-color:var(--green);background:rgba(29,185,84,.06);font-weight:500}
+    .mk-radio{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .2s;margin-top:1px}
+    .mk-opt.mk-sel .mk-radio{background:var(--green);border-color:var(--green)}
+    .mk-radio-check{display:none;width:8px;height:8px;border-radius:50%;background:#fff}
+    .mk-opt.mk-sel .mk-radio-check{display:block}
+    .mk-opt-label{display:block;font-weight:400}
+    .mk-opt-sub{display:block;font-size:.77rem;color:var(--muted);margin-top:3px;font-weight:300}
+    .mk-opt.mk-sel .mk-opt-sub{color:var(--green-dark)}
 
-    .vsl-headline{
-        font-family:'Bebas Neue',sans-serif;
-        font-size:clamp(1.8rem,4.5vw,3.4rem);
-        line-height:1.0;
-        letter-spacing:.02em;
-        color:#fff;
-        margin-bottom:14px;
-    }
-    .vsl-headline .hl-green{ color:var(--green); }
-    .vsl-headline .hl-red  { color:var(--red); }
+    /* Nav */
+    .mk-nav{display:flex;align-items:center;justify-content:space-between;margin-top:28px;flex-wrap:wrap;gap:12px}
+    .mk-btn-prev{background:none;border:1px solid var(--border);color:var(--muted);cursor:pointer;font-size:.86rem;padding:10px 18px;border-radius:8px;transition:all .2s;font-family:'DM Sans',sans-serif;font-weight:500}
+    .mk-btn-prev:hover{border-color:var(--ink);color:var(--ink)}
+    .mk-btn-next{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;border:none;cursor:pointer;font-size:.93rem;font-weight:600;padding:13px 28px;border-radius:8px;transition:all .22s;font-family:'DM Sans',sans-serif;box-shadow:0 4px 16px var(--green-glow);animation:glowPulse 2.5s infinite}
+    .mk-btn-next:hover:not(:disabled){background:var(--green-dark);transform:translateY(-2px)}
+    .mk-btn-next:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;transform:none;box-shadow:none;animation:none}
 
-    .vsl-body{
-        font-size:clamp(.82rem,1.8vw,1rem);
-        color:rgba(255,255,255,.55);
-        line-height:1.72;
-        max-width:520px;
-        margin:0 auto;
-    }
-    .vsl-body strong{ color:rgba(255,255,255,.85); }
+    /* Capture gate */
+    .mk-gate{display:none}
+    .mk-gate.mk-active{display:block;animation:fadeUp .5s ease both}
+    .mk-gate-center{text-align:center;margin-bottom:28px}
+    .mk-gate-icon{width:64px;height:64px;background:rgba(29,185,84,.1);border:2px solid rgba(29,185,84,.25);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.8rem;margin:0 auto 16px}
+    .mk-gate-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+    .mk-gate-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.6rem);line-height:1.0;letter-spacing:.01em;margin-bottom:10px}
+    .mk-gate-sub{font-size:.94rem;color:var(--muted);line-height:1.75;margin-bottom:28px;max-width:440px;margin-left:auto;margin-right:auto;text-align:center}
+    .mk-gate-sub strong{color:var(--ink)}
 
-    /* Animated highlight bar */
-    .vsl-highlight{
-        display:inline-block;
-        background:rgba(29,185,84,.12);
-        border:1px solid rgba(29,185,84,.3);
-        border-radius:6px;
-        padding:10px 20px;
-        font-size:clamp(.88rem,2vw,1.05rem);
-        color:var(--green);
-        font-weight:600;
-        margin-top:18px;
-        letter-spacing:.02em;
-    }
+    .mk-form{display:flex;flex-direction:column;gap:14px}
+    .mk-form-group{display:flex;flex-direction:column;gap:6px}
+    .mk-form-label{font-size:.76rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--ink)}
+    .mk-form-label span{color:var(--red)}
+    .mk-input{border:2px solid var(--border);border-radius:10px;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:.96rem;color:var(--ink);background:var(--paper);transition:border-color .2s,background .2s;outline:none;width:100%}
+    .mk-input:focus{border-color:var(--green);background:#fff}
+    .mk-input::placeholder{color:rgba(110,104,96,.45)}
+    .mk-input.mk-err{border-color:var(--red)}
+    .mk-phone-wrap{display:flex;gap:8px}
+    .mk-country-sel{border:2px solid var(--border);border-radius:10px;padding:13px 10px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--ink);background:var(--paper);outline:none;cursor:pointer;flex-shrink:0;min-width:94px;transition:border-color .2s;-webkit-appearance:none;appearance:none;text-align:center}
+    .mk-country-sel:focus{border-color:var(--green)}
+    .mk-phone-hint{font-size:.7rem;color:var(--muted);margin-top:3px}
+    .mk-consent{display:flex;align-items:flex-start;gap:10px;margin-top:4px}
+    .mk-consent input{width:18px;height:18px;border:2px solid var(--border);border-radius:4px;flex-shrink:0;margin-top:2px;accent-color:var(--green);cursor:pointer}
+    .mk-consent label{font-size:.77rem;color:var(--muted);line-height:1.5;cursor:pointer}
+    .mk-btn-submit{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--green);color:#fff;border:none;cursor:pointer;font-size:.97rem;font-weight:700;padding:15px 32px;border-radius:10px;transition:all .22s;font-family:'DM Sans',sans-serif;box-shadow:0 6px 24px var(--green-glow);width:100%;margin-top:4px;letter-spacing:.01em}
+    .mk-btn-submit:hover{background:var(--green-dark);transform:translateY(-2px)}
+    .mk-form-note{text-align:center;font-size:.74rem;color:var(--muted);margin-top:8px}
 
-    /* Stat burst for proof slide */
-    .vsl-stat-row{
-        display:flex;
-        gap:24px;
-        justify-content:center;
-        flex-wrap:wrap;
-        margin-top:18px;
-    }
-    .vsl-stat{
-        text-align:center;
-    }
-    .vsl-stat-n{
-        font-family:'Bebas Neue',sans-serif;
-        font-size:clamp(2rem,4vw,3rem);
-        color:var(--green);
-        line-height:1;
-        letter-spacing:.02em;
-    }
-    .vsl-stat-l{
-        font-size:.72rem;
-        color:rgba(255,255,255,.4);
-        margin-top:4px;
-        line-height:1.3;
-    }
+    /* Result */
+    .mk-result{display:none}
+    .mk-result.mk-active{display:block;animation:fadeUp .5s ease both}
+    .mk-result-top{text-align:center;margin-bottom:28px}
+    .mk-score-ring{width:108px;height:108px;border-radius:50%;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:2rem;color:#fff;animation:countUp .6s cubic-bezier(.16,1,.3,1) both;letter-spacing:.02em}
+    .mk-result-badge{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:100px;margin-bottom:12px}
+    .mk-result-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.6rem);letter-spacing:.01em;line-height:1.0;margin-bottom:10px}
+    .mk-result-desc{font-size:.95rem;color:var(--muted);max-width:480px;margin:0 auto 24px;line-height:1.78}
+    .mk-result-desc strong{color:var(--ink)}
 
-    /* CTA slide button */
-    .vsl-cta-btn{
-        display:inline-flex;
-        align-items:center;
-        gap:10px;
-        background:var(--green);
-        color:#fff;
-        text-decoration:none;
-        font-weight:700;
-        font-size:clamp(.9rem,2vw,1.08rem);
-        padding:14px 32px;
-        border-radius:8px;
-        margin-top:22px;
-        box-shadow:0 6px 32px rgba(29,185,84,.4);
-        transition:all .25s;
-        animation:glowPulse 2.2s infinite;
-    }
-    .vsl-cta-btn:hover{
-        background:var(--green-dark);
-        transform:translateY(-2px);
-        box-shadow:0 12px 48px rgba(29,185,84,.55);
-    }
+    .mk-breakdown{background:var(--paper);border-radius:12px;padding:20px 22px;margin-bottom:22px}
+    .mk-breakdown-title{font-size:.7rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+    .mk-breakdown-item{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .mk-breakdown-item:last-child{margin-bottom:0}
+    .mk-bl{font-size:.81rem;color:var(--ink);flex:1}
+    .mk-bbar-wrap{flex:2;background:var(--border);border-radius:100px;height:6px;overflow:hidden}
+    .mk-bbar{height:100%;border-radius:100px;transition:width 1s cubic-bezier(.16,1,.3,1) .4s}
+    .mk-bscore{font-size:.76rem;font-weight:700;width:26px;text-align:right}
 
-    /* ── Progress bar ── */
-    .vsl-progress{
-        display:flex;
-        gap:5px;
-        margin-top:20px;
-        align-items:center;
-        justify-content:center;
-    }
-    .vsl-prog-seg{
-        height:3px;
-        flex:1;
-        background:rgba(255,255,255,.1);
-        border-radius:100px;
-        overflow:hidden;
-        max-width:80px;
-        cursor:pointer;
-        transition:opacity .2s;
-    }
-    .vsl-prog-seg:hover{ opacity:.7; }
-    .vsl-prog-fill{
-        height:100%;
-        width:0%;
-        background:var(--green);
-        border-radius:100px;
-        transition:width linear;
-    }
-    .vsl-prog-seg.done .vsl-prog-fill{ width:100%; }
+    .mk-cta-box{background:var(--ink);border-radius:16px;padding:30px 26px;color:#fff;margin-bottom:14px}
+    .mk-cta-tag{font-size:.66rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px}
+    .mk-cta-title{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.01em;margin-bottom:8px}
+    .mk-cta-text{font-size:.88rem;color:rgba(255,255,255,.62);line-height:1.75;margin-bottom:22px}
+    .mk-cta-text strong{color:#fff}
+    .mk-btn-wa{display:flex;align-items:center;justify-content:center;gap:10px;background:var(--wa);color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;padding:14px 26px;border-radius:8px;box-shadow:0 6px 24px rgba(37,211,102,.3);transition:all .22s;width:100%;margin-bottom:10px;letter-spacing:.01em}
+    .mk-btn-wa:hover{background:#1DA851;transform:translateY(-2px)}
+    .mk-btn-wa svg{width:18px;height:18px;fill:#fff;flex-shrink:0}
+    .mk-btn-cal{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);color:#fff;text-decoration:none;font-weight:600;font-size:.87rem;padding:12px 22px;border-radius:8px;transition:all .22s;width:100%;letter-spacing:.01em}
+    .mk-btn-cal:hover{background:rgba(255,255,255,.14);border-color:var(--green)}
 
-    /* ── Controls bar ── */
-    .vsl-controls{
-        display:flex;
-        align-items:center;
-        justify-content:space-between;
-        margin-top:14px;
-        padding:0 4px;
-    }
-    .vsl-ctrl-left{
-        display:flex;
-        align-items:center;
-        gap:10px;
-    }
-    .vsl-btn{
-        background:rgba(255,255,255,.07);
-        border:1px solid rgba(255,255,255,.1);
-        color:rgba(255,255,255,.6);
-        border-radius:6px;
-        padding:6px 14px;
-        font-size:.76rem;
-        cursor:pointer;
-        font-family:'DM Sans',sans-serif;
-        transition:all .2s;
-        display:flex;
-        align-items:center;
-        gap:6px;
-    }
-    .vsl-btn:hover{
-        background:rgba(255,255,255,.12);
-        color:#fff;
-        border-color:rgba(255,255,255,.2);
-    }
-    .vsl-btn.paused .icon-pause{ display:none; }
-    .vsl-btn.paused .icon-play{ display:block; }
-    .vsl-btn .icon-pause{ display:block; }
-    .vsl-btn .icon-play{ display:none; }
+    .mk-lm{background:rgba(29,185,84,.08);border:1px solid rgba(29,185,84,.2);border-radius:12px;padding:18px 20px;display:flex;gap:13px;align-items:flex-start}
+    .mk-lm-icon{font-size:1.6rem;flex-shrink:0}
+    .mk-lm-title{font-weight:600;font-size:.88rem;margin-bottom:4px}
+    .mk-lm-desc{font-size:.78rem;color:var(--muted);line-height:1.55}
+    .mk-lm-link{display:inline-block;margin-top:7px;font-size:.76rem;font-weight:700;color:var(--green);text-decoration:none;border-bottom:1px solid rgba(29,185,84,.3);padding-bottom:1px}
 
-    .vsl-slide-counter{
-        font-size:.74rem;
-        color:rgba(255,255,255,.3);
-        letter-spacing:.04em;
-    }
-
-    /* Swipe hint on mobile */
-    .vsl-swipe-hint{
-        display:none;
-        font-size:.68rem;
-        color:rgba(255,255,255,.2);
-        text-align:center;
-        margin-top:8px;
-        letter-spacing:.04em;
-    }
-
-    /* Vimeo-ready overlay (hidden until video URL set) */
-    .vsl-vimeo-ready{
-        display:none;
-        position:absolute;
-        inset:0;
-        z-index:20;
-        border-radius:16px;
-        overflow:hidden;
-    }
-    .vsl-vimeo-ready iframe{
-        width:100%;
-        height:100%;
-        border:none;
-    }
-    /* When a vimeo URL is set via JS, the overlay shows */
-    .vsl-player.has-video .vsl-vimeo-ready{ display:block; }
-    .vsl-player.has-video .vsl-slide     { display:none; }
-    .vsl-player.has-video ~ .vsl-controls { opacity:.4; pointer-events:none; }
-
-    @media(max-width:640px){
-        .vsl-slide{ padding:28px 24px; }
-        .vsl-swipe-hint{ display:block; }
-    }
+    .mk-restart{text-align:center;margin-top:16px}
+    .mk-btn-restart{background:none;border:none;cursor:pointer;font-size:.78rem;color:var(--muted);font-family:'DM Sans',sans-serif;text-decoration:underline;text-underline-offset:3px}
     </style>
 </head>
 <body>
@@ -771,174 +604,343 @@
 
 
 <!-- ════════════════════════════════════════════
-  MINI VSL — SLIDESHOW ANIMADO
-  DotCom Secrets: Hook → Pain → Agitate → Reveal → Proof → CTA
-  Posición: entre Hero y Dolores para retener antes de scrollear.
-  ──────────────────────────────────────────
-  🎬 CUANDO TENGAS VIDEO EN VIMEO:
-  Descomenta la línea VIMEO_URL en el script
-  y el slideshow se reemplaza automáticamente.
+  SECCIÓN 1.5 · VSL — EL VIDEO
+  DotCom: Star → Story → Solution en video.
+  Reemplazar el iframe placeholder con el link de Vimeo real.
 ════════════════════════════════════════════ -->
-<section class="vsl-section" id="vsl">
-    <div class="vsl-wrapper">
+<section class="vsl-section">
+    <div class="vsl-inner">
 
-        <!-- Label superior -->
-        <div class="vsl-label">
-            <span class="vsl-rec-dot"></span>
-            <span class="vsl-label-text">Mini VSL — Mira esto primero</span>
-            <span class="vsl-rec-dot"></span>
+        <!-- TEXTO + FOUNDER -->
+        <div class="vsl-left scroll-reveal sr-left">
+            <div class="vsl-eyebrow">Manuel Cardoso · Fundador</div>
+            <h2 class="t-display">
+                15 años en este negocio.<br>
+                <em>Un problema que no debería existir.</em>
+            </h2>
+            <p>Conozco tu operación desde adentro — no como desarrollador, sino como el mismo tipo que estuvo detrás del mostrador. Lo que te muestro en este video es lo que cambió todo para mí y para +35 laboratorios en 4 países.</p>
+
+            <!-- FOUNDER CARD — reemplaza la imagen con una foto real tuya -->
+            <div class="founder-card">
+                <!--
+                    OPCIÓN A: Foto real (reemplaza el placeholder con tu imagen)
+                    <img class="founder-photo" src="URL_DE_TU_FOTO.jpg" alt="Manuel Cardoso">
+
+                    OPCIÓN B: Iniciales (activo mientras no tienes foto)
+                -->
+                <div class="founder-photo-placeholder">MC</div>
+                <div class="founder-info">
+                    <div class="founder-name">Manuel Cardoso</div>
+                    <div class="founder-role">Fundador · MonKeys Lab<br>+15 años en reparación técnica</div>
+                    <span class="founder-badge">📍 Medellín, Colombia</span>
+                </div>
+            </div>
         </div>
 
-        <!-- Player frame -->
-        <div class="vsl-player" id="vslPlayer">
+        <!-- VIDEO PLAYER -->
+        <div class="vsl-right scroll-reveal sr-right">
+            <div class="vsl-player">
+                <!--
+                    ════ INSTRUCCIONES VSL ════
+                    1. Sube el video a Vimeo (cuenta Pro para desactivar branding)
+                    2. Activa estas opciones en Vimeo: Autoplay OFF · Loop OFF · Controls ON
+                    3. Reemplaza el div.vsl-placeholder completo por:
 
-            <!-- Vimeo ready overlay (se activa cuando configures la URL) -->
-            <div class="vsl-vimeo-ready" id="vslVimeo"></div>
-
-            <!-- ═══ SLIDE 1 — HOOK ═══
-                 DotCom: La primera imagen para el scroll.
-                 Pregunta que golpea directo. -->
-            <div class="vsl-slide s-hook active" data-duration="5000">
-                <span class="vsl-slide-num">01 / 06</span>
-                <span class="vsl-slide-icon" style="color:#fff">🔧</span>
-                <div class="vsl-headline">
-                    ¿Cuánto dinero<br>
-                    perdiste <span class="hl-red">este mes</span><br>
-                    sin darte cuenta?
-                </div>
-                <p class="vsl-body">
-                    No por trabajar poco. No por falta de clientes.<br>
-                    <strong>Por no tener el sistema correcto.</strong>
-                </p>
-            </div>
-
-            <!-- ═══ SLIDE 2 — PAIN ═══
-                 DotCom: Nombra el dolor más agudo. -->
-            <div class="vsl-slide s-pain" data-duration="5500">
-                <span class="vsl-slide-num">02 / 06</span>
-                <span class="vsl-slide-icon" style="color:#E8311A">😤</span>
-                <div class="vsl-headline">
-                    Un cliente reclama.<br>
-                    Tú no tienes<br>
-                    <span class="hl-red">cómo probarlo.</span>
-                </div>
-                <p class="vsl-body">
-                    Entregaste el equipo perfecto.<br>
-                    Él dice que llegó dañado.<br>
-                    <strong>Sin evidencia, toca ceder. Toca pagar.</strong>
-                </p>
-                <div class="vsl-highlight">$1M — $3M por reclamación injusta</div>
-            </div>
-
-            <!-- ═══ SLIDE 3 — AGITATE ═══
-                 DotCom: Restregar la herida. -->
-            <div class="vsl-slide s-agitate" data-duration="5500">
-                <span class="vsl-slide-num">03 / 06</span>
-                <span class="vsl-slide-icon" style="color:#f59e0b">📒</span>
-                <div class="vsl-headline">
-                    Cuadernos.<br>
-                    Papelitos.<br>
-                    <span class="hl-red">Excel que nadie actualiza.</span>
-                </div>
-                <p class="vsl-body">
-                    Así no puedes crecer.<br>
-                    Así no puedes delegar.<br>
-                    <strong>Así no puedes ganar lo que mereces.</strong>
-                </p>
-            </div>
-
-            <!-- ═══ SLIDE 4 — REVEAL ═══
-                 DotCom: La solución existe — sin revelar el cómo. -->
-            <div class="vsl-slide s-reveal" data-duration="5000">
-                <span class="vsl-slide-num">04 / 06</span>
-                <span class="vsl-slide-icon" style="color:var(--green)">🔒</span>
-                <div class="vsl-headline">
-                    Hay una forma<br>
-                    de que eso<br>
-                    <span class="hl-green">nunca vuelva a pasar.</span>
-                </div>
-                <p class="vsl-body">
-                    No es un Excel mejorado.<br>
-                    No es un software genérico.<br>
-                    <strong>Es un sistema diseñado exactamente para ti.</strong>
-                </p>
-            </div>
-
-            <!-- ═══ SLIDE 5 — PROOF ═══
-                 DotCom: Números reales generan fe. -->
-            <div class="vsl-slide s-proof" data-duration="5500">
-                <span class="vsl-slide-num">05 / 06</span>
-                <span class="vsl-slide-icon" style="color:var(--green)">📈</span>
-                <div class="vsl-headline">
-                    Ya lo usan<br>
-                    <span class="hl-green">+35 laboratorios</span><br>
-                    en 4 países.
-                </div>
-                <div class="vsl-stat-row">
-                    <div class="vsl-stat">
-                        <div class="vsl-stat-n">+35</div>
-                        <div class="vsl-stat-l">Labs activos<br>Col · Chi · Per · Ecu</div>
+                    <iframe
+                      src="https://player.vimeo.com/video/TU_VIDEO_ID?badge=0&autopause=0&player_id=0&app_id=58479"
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowfullscreen
+                      title="MonKeys Lab — Manuel Cardoso">
+                    </iframe>
+                    ════════════════════════
+                -->
+                <div class="vsl-placeholder">
+                    <span class="vsl-placeholder-tag">▶ VIDEO PRÓXIMAMENTE</span>
+                    <div class="vsl-play-btn">
+                        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                     </div>
-                    <div class="vsl-stat">
-                        <div class="vsl-stat-n">48h</div>
-                        <div class="vsl-stat-l">Implementación<br>sin estrés</div>
-                    </div>
-                    <div class="vsl-stat">
-                        <div class="vsl-stat-n">$3M</div>
-                        <div class="vsl-stat-l">COP recuperados<br>por reclamación</div>
-                    </div>
+                    <span class="vsl-placeholder-text">Pendiente · Grabación Medellín</span>
                 </div>
             </div>
-
-            <!-- ═══ SLIDE 6 — CTA ═══
-                 DotCom: Una sola acción. Fricción cero. -->
-            <div class="vsl-slide s-cta" data-duration="99999">
-                <span class="vsl-slide-num">06 / 06</span>
-                <span class="vsl-slide-icon" style="color:var(--green)">🚀</span>
-                <div class="vsl-headline">
-                    ¿Listo para ver<br>
-                    <span class="hl-green">cómo funciona</span><br>
-                    en tu negocio?
-                </div>
-                <p class="vsl-body">
-                    Demo en vivo. Gratis. Sin compromiso.<br>
-                    <strong>En minutos lo ves todo — y decides tú.</strong>
-                </p>
-                <a class="vsl-cta-btn"
-                   href="https://calendar.app.google/RtZqsytYkhhLRdze7"
-                   target="_blank" rel="noopener noreferrer"
-                   onclick="trackEvent('vsl','click','VSL Slide CTA')">
-                    Agendar demo gratis →
-                </a>
-            </div>
-
-        </div><!-- /vsl-player -->
-
-        <!-- Progress segments -->
-        <div class="vsl-progress" id="vslProgress"></div>
-
-        <!-- Controls -->
-        <div class="vsl-controls">
-            <div class="vsl-ctrl-left">
-                <button class="vsl-btn" id="vslPlayPause" onclick="vslTogglePause()">
-                    <span class="icon-pause">⏸ Pausar</span>
-                    <span class="icon-play">▶ Reanudar</span>
-                </button>
-                <button class="vsl-btn" onclick="vslPrev()">← Anterior</button>
-                <button class="vsl-btn" onclick="vslNext()">Siguiente →</button>
-            </div>
-            <span class="vsl-slide-counter" id="vslCounter">1 / 6</span>
+            <p class="vsl-caption">⏱ 3 minutos · Sin rodeos · La historia detrás del sistema</p>
         </div>
 
-        <p class="vsl-swipe-hint">← desliza para navegar →</p>
-
-    </div><!-- /vsl-wrapper -->
+    </div>
 </section>
 
 
 <!-- ════════════════════════════════════════════
-  SECCIÓN 2 · DOLORES — AGITACIÓN
+  SECCIÓN 2 · TEST DE DIAGNÓSTICO
+  DotCom: Qualifica al prospecto. Captura el lead.
+  MOVIDO ANTES DE DOLORES — el test ES el hook de calificación.
+  El visitante que completa el test está listo para la demo.
+════════════════════════════════════════════ -->
+<section class="mk-test-section" id="test-section" style="background:var(--ink);padding:100px 24px;">
+    <div class="container">
+
+        <div class="mk-test-header scroll-reveal" style="max-width:760px;margin:0 auto 56px;">
+
+            <!-- EYEBROW -->
+            <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(29,185,84,.12);border:1px solid rgba(29,185,84,.3);color:var(--green);font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:28px;">
+                <span style="width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;animation:blink 1.4s infinite;flex-shrink:0"></span>
+                Diagnóstico gratuito · 2 minutos
+            </div>
+
+            <!-- HEADLINE PRINCIPAL — el hook real -->
+            <h2 class="t-display" style="font-size:clamp(2.8rem,6vw,5rem);line-height:1.0;letter-spacing:.01em;color:#fff;margin-bottom:20px;">
+                ¿Cuánta plata estás<br>
+                perdiendo <span style="color:var(--green)">sin saberlo?</span>
+            </h2>
+
+            <!-- SUBHEAD con urgencia -->
+            <p style="font-size:1.08rem;color:rgba(255,255,255,.65);line-height:1.78;max-width:580px;margin-bottom:28px;">
+                6 preguntas. 2 minutos. Un diagnóstico honesto del estado real de tu operación —
+                y una <strong style="color:#fff">Calculadora de Rentabilidad gratis</strong> que te muestra
+                exactamente cuánto ganas (o pierdes) por cada reparación.
+            </p>
+
+            <!-- SOCIAL PROOF INLINE -->
+            <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+                <div style="display:flex;">
+                    <span style="width:28px;height:28px;border-radius:50%;background:#1a2744;border:2px solid rgba(29,185,84,.4);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#fff;flex-shrink:0;">SF</span>
+                    <span style="width:28px;height:28px;border-radius:50%;background:#2d4a8a;border:2px solid rgba(29,185,84,.4);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#fff;flex-shrink:0;margin-left:-6px;">TM</span>
+                    <span style="width:28px;height:28px;border-radius:50%;background:#1DB954;border:2px solid rgba(29,185,84,.4);display:flex;align-items:center;justify-content:center;font-size:.55rem;font-weight:700;color:#fff;flex-shrink:0;margin-left:-6px;">+32</span>
+                </div>
+                <span style="font-size:.8rem;color:rgba(255,255,255,.45);">Más de <strong style="color:rgba(255,255,255,.75);">35 laboratorios</strong> ya lo hicieron · ¿Cuál es tu resultado?</span>
+            </div>
+
+        </div>
+
+        <div class="mk-card scroll-reveal d1" id="mkTestCard" style="max-width:760px;margin:0 auto;">
+
+            <!-- PROGRESS -->
+            <div class="mk-prog-wrap" id="mkProgWrap">
+                <div class="mk-prog-bg"><div class="mk-prog-fill" id="mkProgFill"></div></div>
+                <div class="mk-prog-meta">
+                    <span class="mk-prog-label" id="mkProgLabel">Pregunta 1 de 6</span>
+                    <span class="mk-prog-pct" id="mkProgPct">0%</span>
+                </div>
+            </div>
+
+            <!-- PREGUNTA 1 -->
+            <div class="mk-step mk-active" data-step="1">
+                <span class="mk-category">📋 Registro y control</span>
+                <div class="mk-q t-display">¿Cómo registras hoy los equipos que ingresan a tu taller?</div>
+                <div class="mk-hint">Sé honesto — esto define tu nivel de riesgo ante una reclamación.</div>
+                <div class="mk-options">
+                    <button class="mk-opt" data-val="0" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Cuaderno o papelitos sueltos</span><span class="mk-opt-sub">No tengo foto del estado del equipo al ingreso</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="1" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Excel o formulario básico</span><span class="mk-opt-sub">Tengo registro pero sin evidencia fotográfica</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="2" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Sistema digital con fotos de ingreso</span><span class="mk-opt-sub">Puedo demostrar el estado del equipo en segundos</span></div>
+                    </button>
+                </div>
+                <div class="mk-nav"><span></span><button class="mk-btn-next" disabled id="mkNext1" onclick="mkNextStep(1)">Siguiente →</button></div>
+            </div>
+
+            <!-- PREGUNTA 2 -->
+            <div class="mk-step" data-step="2">
+                <span class="mk-category">💸 Claridad financiera</span>
+                <div class="mk-q t-display">¿Sabes exactamente cuánto ganaste el mes pasado?</div>
+                <div class="mk-hint">No cuánto facturaste — cuánto quedó limpio después de costos y gastos.</div>
+                <div class="mk-options">
+                    <button class="mk-opt" data-val="0" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">No, lo calculo a ojo por lo que hay en la cuenta</span><span class="mk-opt-sub">No tengo un número exacto confiable</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="1" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Tengo una idea aproximada con Excel</span><span class="mk-opt-sub">Me demora calcularlo y no siempre es preciso</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="2" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Sí, lo veo en tiempo real en el sistema</span><span class="mk-opt-sub">Tomo decisiones basadas en datos reales</span></div>
+                    </button>
+                </div>
+                <div class="mk-nav"><button class="mk-btn-prev" onclick="mkPrevStep(2)">← Anterior</button><button class="mk-btn-next" disabled id="mkNext2" onclick="mkNextStep(2)">Siguiente →</button></div>
+            </div>
+
+            <!-- PREGUNTA 3 -->
+            <div class="mk-step" data-step="3">
+                <span class="mk-category">🤬 Reclamaciones</span>
+                <div class="mk-q t-display">¿Qué pasa cuando un cliente dice que dañaste su equipo y tú sabes que no fue así?</div>
+                <div class="mk-hint">Esta pregunta tiene un costo real en pesos. Sé honesto.</div>
+                <div class="mk-options">
+                    <button class="mk-opt" data-val="0" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Generalmente termino cediendo — no tengo cómo demostrar nada</span><span class="mk-opt-sub">El cliente siempre "tiene la razón" por defecto</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="1" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">A veces tengo algo para defenderme, a veces no</span><span class="mk-opt-sub">Depende del técnico o si alguien recuerda el caso</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="2" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Abro el sistema, muestro las fotos y la conversación termina</span><span class="mk-opt-sub">Tengo evidencia clara de cada equipo que entra</span></div>
+                    </button>
+                </div>
+                <div class="mk-nav"><button class="mk-btn-prev" onclick="mkPrevStep(3)">← Anterior</button><button class="mk-btn-next" disabled id="mkNext3" onclick="mkNextStep(3)">Siguiente →</button></div>
+            </div>
+
+            <!-- PREGUNTA 4 -->
+            <div class="mk-step" data-step="4">
+                <span class="mk-category">🔧 Inventario y operación</span>
+                <div class="mk-q t-display">¿Cuándo fue la última vez que paraste una reparación porque no tenías el repuesto?</div>
+                <div class="mk-hint">Cada parada tiene costo en tiempo, reputación y dinero.</div>
+                <div class="mk-options">
+                    <button class="mk-opt" data-val="0" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Frecuentemente — es parte de la operación diaria</span><span class="mk-opt-sub">No tengo visibilidad del inventario en tiempo real</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="1" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">De vez en cuando — intento llevar el control pero falla</span><span class="mk-opt-sub">Tengo algo organizado pero no es confiable al 100%</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="2" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Casi nunca — sé exactamente qué tengo en stock</span><span class="mk-opt-sub">El sistema me avisa cuando algo baja del mínimo</span></div>
+                    </button>
+                </div>
+                <div class="mk-nav"><button class="mk-btn-prev" onclick="mkPrevStep(4)">← Anterior</button><button class="mk-btn-next" disabled id="mkNext4" onclick="mkNextStep(4)">Siguiente →</button></div>
+            </div>
+
+            <!-- PREGUNTA 5 -->
+            <div class="mk-step" data-step="5">
+                <span class="mk-category">👥 Equipo y procesos</span>
+                <div class="mk-q t-display">Si mañana tu mejor técnico no puede trabajar, ¿qué pasa?</div>
+                <div class="mk-hint">La respuesta dice todo sobre qué tan escalable es tu operación hoy.</div>
+                <div class="mk-options">
+                    <button class="mk-opt" data-val="0" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Se para todo — él sabe cosas que nadie más sabe</span><span class="mk-opt-sub">No hay proceso documentado ni historial claro</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="1" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Se complica, pero alguien puede tomar algunas tareas</span><span class="mk-opt-sub">Hay algo organizado pero no es suficiente</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="2" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Otro técnico puede continuar desde donde quedó</span><span class="mk-opt-sub">Todo está en el sistema, el proceso es claro</span></div>
+                    </button>
+                </div>
+                <div class="mk-nav"><button class="mk-btn-prev" onclick="mkPrevStep(5)">← Anterior</button><button class="mk-btn-next" disabled id="mkNext5" onclick="mkNextStep(5)">Siguiente →</button></div>
+            </div>
+
+            <!-- PREGUNTA 6 -->
+            <div class="mk-step" data-step="6">
+                <span class="mk-category">🚀 Crecimiento</span>
+                <div class="mk-q t-display">Si quisieras abrir una segunda sede hoy, ¿podrías hacerlo sin que todo dependa de ti?</div>
+                <div class="mk-hint">Esta es la pregunta que separa a los que escalan de los que se quedan estancados.</div>
+                <div class="mk-options">
+                    <button class="mk-opt" data-val="0" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">No — el negocio depende demasiado de mí</span><span class="mk-opt-sub">Sin mí presente, la operación falla</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="1" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Tal vez — pero sería muy difícil de controlar</span><span class="mk-opt-sub">Podría intentarlo pero sin la visibilidad que necesito</span></div>
+                    </button>
+                    <button class="mk-opt" data-val="2" onclick="mkSelectOpt(this)">
+                        <div class="mk-radio"><div class="mk-radio-check"></div></div>
+                        <div><span class="mk-opt-label">Sí — tengo los sistemas para delegar con confianza</span><span class="mk-opt-sub">Veo todo desde el celular, el equipo opera solo</span></div>
+                    </button>
+                </div>
+                <div class="mk-nav"><button class="mk-btn-prev" onclick="mkPrevStep(6)">← Anterior</button><button class="mk-btn-next" disabled id="mkNext6" onclick="mkShowCapture()">Ver mi diagnóstico →</button></div>
+            </div>
+
+            <!-- CAPTURE GATE -->
+            <div class="mk-gate" id="mkGate">
+                <div class="mk-gate-center">
+                    <div class="mk-gate-icon">🔒</div>
+                    <div class="mk-gate-eyebrow"><span class="tdot"></span>Tu diagnóstico está listo</div>
+                    <div class="mk-gate-title t-display">¿A dónde te enviamos<br>los resultados?</div>
+                    <p class="mk-gate-sub">Además de tu diagnóstico, recibirás gratis la <strong>"Calculadora de Rentabilidad Real"</strong> — para saber exactamente cuánto ganas por cada reparación.</p>
+                </div>
+                <div class="mk-form">
+                    <div class="mk-form-group">
+                        <label class="mk-form-label" for="mkName">Tu nombre <span>*</span></label>
+                        <input class="mk-input" id="mkName" type="text" placeholder="Ej: Carlos Martínez" autocomplete="given-name">
+                    </div>
+                    <div class="mk-form-group">
+                        <label class="mk-form-label" for="mkPhone">WhatsApp <span>*</span></label>
+                        <div class="mk-phone-wrap">
+                            <select class="mk-country-sel" id="mkCountry">
+                                <option value="+57">🇨🇴 +57</option>
+                                <option value="+56">🇨🇱 +56</option>
+                                <option value="+51">🇵🇪 +51</option>
+                                <option value="+593">🇪🇨 +593</option>
+                                <option value="+52">🇲🇽 +52</option>
+                                <option value="+54">🇦🇷 +54</option>
+                                <option value="+58">🇻🇪 +58</option>
+                                <option value="+1">🇺🇸 +1</option>
+                                <option value="+34">🇪🇸 +34</option>
+                                <option value="">🌍 Otro</option>
+                            </select>
+                            <input class="mk-input" id="mkPhone" type="tel" placeholder="300 123 4567" autocomplete="tel">
+                        </div>
+                        <span class="mk-phone-hint">Solo el número, sin indicativo de país</span>
+                    </div>
+                    <div class="mk-form-group">
+                        <label class="mk-form-label" for="mkCity">Ciudad</label>
+                        <input class="mk-input" id="mkCity" type="text" placeholder="Ej: Bogotá, Medellín, Santiago..." autocomplete="address-level2">
+                    </div>
+                    <div class="mk-consent">
+                        <input type="checkbox" id="mkConsent">
+                        <label for="mkConsent">Acepto recibir mi diagnóstico y la calculadora por WhatsApp. Sin spam. Puedo cancelar cuando quiera.</label>
+                    </div>
+                    <button class="mk-btn-submit" onclick="mkSubmit()">Ver mi diagnóstico → recibir calculadora gratis</button>
+                    <p class="mk-form-note">🔐 Tus datos están seguros · MonKeys Lab no comparte tu información</p>
+                </div>
+            </div>
+
+            <!-- RESULTADO -->
+            <div class="mk-result" id="mkResult">
+                <div class="mk-result-top">
+                    <div class="mk-score-ring" id="mkScoreRing"><span id="mkScoreDisplay">0</span></div>
+                    <div class="mk-result-badge" id="mkBadge">Nivel</div>
+                    <div class="mk-result-title t-display" id="mkResultTitle">Diagnóstico</div>
+                    <p class="mk-result-desc" id="mkResultDesc">Cargando...</p>
+                </div>
+                <div class="mk-breakdown">
+                    <div class="mk-breakdown-title">Tu puntaje por área</div>
+                    <div id="mkBreakdown"></div>
+                </div>
+                <div class="mk-cta-box">
+                    <div class="mk-cta-tag">El siguiente paso</div>
+                    <div class="mk-cta-title t-display" id="mkCtaTitle">Tu próximo paso</div>
+                    <p class="mk-cta-text" id="mkCtaText">...</p>
+                    <a class="mk-btn-wa" id="mkCtaWA" href="https://wa.link/7o77zu" target="_blank" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.053 23.338a.75.75 0 0 0 .933.933l5.493-1.475A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.706 9.706 0 0 1-4.95-1.355l-.355-.212-3.683.988.988-3.607-.231-.373A9.694 9.694 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+                        Hablar por WhatsApp ahora
+                    </a>
+                    <a class="mk-btn-cal" href="https://calendar.app.google/RtZqsytYkhhLRdze7" target="_blank" rel="noopener noreferrer">📅 Prefiero agendar una demo →</a>
+                </div>
+                <div class="mk-lm">
+                    <span class="mk-lm-icon">📊</span>
+                    <div>
+                        <div class="mk-lm-title">Tu calculadora ya está en camino</div>
+                        <p class="mk-lm-desc">La <strong>"Calculadora de Rentabilidad Real"</strong> llegará a tu WhatsApp en los próximos minutos. Úsala para saber exactamente cuánto ganas por cada reparación.</p>
+                        <a href="https://wa.link/7o77zu" target="_blank" class="mk-lm-link">¿No llegó? Escríbenos aquí →</a>
+                    </div>
+                </div>
+                <div class="mk-restart"><button class="mk-btn-restart" onclick="mkRestart()">Volver a hacer el test</button></div>
+            </div>
+
+        </div><!-- /mk-card -->
+    </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+  SECCIÓN 3 · DOLORES — AGITACIÓN
   DotCom: El visitante dice "eso soy yo".
+  (El test ya calificó — ahora agitamos para profundizar)
 ════════════════════════════════════════════ -->
 <section class="pain-section" id="dolores">
     <div class="container">
@@ -1008,134 +1010,7 @@
 </section>
 
 
-<!-- ════════════════════════════════════════════
-  SECCIÓN 3 · TEST DE DIAGNÓSTICO
-  DotCom Secrets: Qualifica al prospecto.
-  El test crea conciencia del problema y deseo de solución.
-════════════════════════════════════════════ -->
-<section class="test-section" id="test-section">
-    <div class="container">
-
-        <div class="test-header scroll-reveal">
-            <span class="test-label">Diagnóstico rápido</span>
-            <h2 class="t-display">¿Realmente controlas<br>tu negocio?</h2>
-            <p>Responde con honestidad. En menos de 2 minutos sabrás exactamente en qué punto está tu operación — y si necesitas actuar con urgencia.</p>
-        </div>
-
-        <div class="test-card scroll-reveal d1">
-
-            <div class="test-progress">
-                <div class="test-progress-bar" id="progressBar"></div>
-            </div>
-
-            <!-- PREGUNTA 1 -->
-            <div class="test-step active" data-step="1">
-                <div class="test-q-num">Pregunta 1 de 6</div>
-                <div class="test-q t-display">¿Sabes exactamente cuántos clientes atendiste en los últimos 3 meses?</div>
-                <div class="test-options">
-                    <div class="test-opt" data-val="2" onclick="selectOpt(this)"><span class="opt-check">✓</span>Sí, tengo el número exacto con detalle</div>
-                    <div class="test-opt" data-val="1" onclick="selectOpt(this)"><span class="opt-check">✓</span>Más o menos, tengo una idea aproximada</div>
-                    <div class="test-opt" data-val="0" onclick="selectOpt(this)"><span class="opt-check">✓</span>No, tendría que buscar en cuadernos o recordar</div>
-                </div>
-                <div class="test-nav">
-                    <span></span>
-                    <button class="test-btn-next" disabled onclick="nextStep()">Siguiente →</button>
-                </div>
-            </div>
-
-            <!-- PREGUNTA 2 -->
-            <div class="test-step" data-step="2">
-                <div class="test-q-num">Pregunta 2 de 6</div>
-                <div class="test-q t-display">¿Cuál fue tu servicio o producto más vendido y rentable este año?</div>
-                <div class="test-options">
-                    <div class="test-opt" data-val="2" onclick="selectOpt(this)"><span class="opt-check">✓</span>Lo sé con certeza, tengo datos concretos</div>
-                    <div class="test-opt" data-val="1" onclick="selectOpt(this)"><span class="opt-check">✓</span>Creo saber cuál es, pero sin datos exactos</div>
-                    <div class="test-opt" data-val="0" onclick="selectOpt(this)"><span class="opt-check">✓</span>Asumo por intuición, no tengo forma de verificarlo</div>
-                </div>
-                <div class="test-nav">
-                    <button class="test-btn-prev" onclick="prevStep()">← Anterior</button>
-                    <button class="test-btn-next" disabled onclick="nextStep()">Siguiente →</button>
-                </div>
-            </div>
-
-            <!-- PREGUNTA 3 -->
-            <div class="test-step" data-step="3">
-                <div class="test-q-num">Pregunta 3 de 6</div>
-                <div class="test-q t-display">¿Cómo obtienes información real sobre tus clientes y su historial?</div>
-                <div class="test-options">
-                    <div class="test-opt" data-val="2" onclick="selectOpt(this)"><span class="opt-check">✓</span>Tengo un sistema digital con historial completo</div>
-                    <div class="test-opt" data-val="1" onclick="selectOpt(this)"><span class="opt-check">✓</span>En Excel o algún registro que actualizo a veces</div>
-                    <div class="test-opt" data-val="0" onclick="selectOpt(this)"><span class="opt-check">✓</span>En cuadernos, papelitos o de memoria</div>
-                </div>
-                <div class="test-nav">
-                    <button class="test-btn-prev" onclick="prevStep()">← Anterior</button>
-                    <button class="test-btn-next" disabled onclick="nextStep()">Siguiente →</button>
-                </div>
-            </div>
-
-            <!-- PREGUNTA 4 -->
-            <div class="test-step" data-step="4">
-                <div class="test-q-num">Pregunta 4 de 6</div>
-                <div class="test-q t-display">¿Con qué información real tomas decisiones financieras en tu negocio?</div>
-                <div class="test-options">
-                    <div class="test-opt" data-val="2" onclick="selectOpt(this)"><span class="opt-check">✓</span>Con reportes y datos actualizados del sistema</div>
-                    <div class="test-opt" data-val="1" onclick="selectOpt(this)"><span class="opt-check">✓</span>Con registros parciales y mi criterio</div>
-                    <div class="test-opt" data-val="0" onclick="selectOpt(this)"><span class="opt-check">✓</span>Principalmente con el instinto y la experiencia</div>
-                </div>
-                <div class="test-nav">
-                    <button class="test-btn-prev" onclick="prevStep()">← Anterior</button>
-                    <button class="test-btn-next" disabled onclick="nextStep()">Siguiente →</button>
-                </div>
-            </div>
-
-            <!-- PREGUNTA 5 -->
-            <div class="test-step" data-step="5">
-                <div class="test-q-num">Pregunta 5 de 6</div>
-                <div class="test-q t-display">En los últimos 3 meses, ¿tomaste alguna decisión importante basada en datos concretos de tu negocio?</div>
-                <div class="test-options">
-                    <div class="test-opt" data-val="2" onclick="selectOpt(this)"><span class="opt-check">✓</span>Sí, con reportes claros que me dan seguridad</div>
-                    <div class="test-opt" data-val="1" onclick="selectOpt(this)"><span class="opt-check">✓</span>Algunas veces, cuando logro organizar la información</div>
-                    <div class="test-opt" data-val="0" onclick="selectOpt(this)"><span class="opt-check">✓</span>No, generalmente confío en el olfato</div>
-                </div>
-                <div class="test-nav">
-                    <button class="test-btn-prev" onclick="prevStep()">← Anterior</button>
-                    <button class="test-btn-next" disabled onclick="nextStep()">Siguiente →</button>
-                </div>
-            </div>
-
-            <!-- PREGUNTA 6 -->
-            <div class="test-step" data-step="6">
-                <div class="test-q-num">Pregunta 6 de 6</div>
-                <div class="test-q t-display">¿Estás hoy en el punto ideal de estabilidad financiera, metas claras y control total de tu negocio?</div>
-                <div class="test-options">
-                    <div class="test-opt" data-val="2" onclick="selectOpt(this)"><span class="opt-check">✓</span>Sí, tengo claridad total y control real</div>
-                    <div class="test-opt" data-val="1" onclick="selectOpt(this)"><span class="opt-check">✓</span>Parcialmente, hay cosas que mejorar</div>
-                    <div class="test-opt" data-val="0" onclick="selectOpt(this)"><span class="opt-check">✓</span>No, necesito mejorar varios aspectos con urgencia</div>
-                </div>
-                <div class="test-nav">
-                    <button class="test-btn-prev" onclick="prevStep()">← Anterior</button>
-                    <button class="test-btn-next" disabled onclick="showResult()">Ver mi diagnóstico →</button>
-                </div>
-            </div>
-
-            <!-- RESULTADO -->
-            <div class="test-result" id="testResult">
-                <div class="result-score-ring" id="scoreRing">
-                    <span id="scoreNum">0</span>
-                </div>
-                <div class="result-title t-display" id="resultTitle">Tu diagnóstico</div>
-                <p class="result-desc" id="resultDesc">Cargando...</p>
-                <div class="result-cta-box" id="resultCTA">
-                    <p id="resultCTAText">Texto...</p>
-                    <a class="btn-green" href="https://calendar.app.google/RtZqsytYkhhLRdze7" target="_blank" rel="noopener noreferrer" onclick="trackEvent('test','click','Result CTA')">
-                        Agendar demo gratis →
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
+<!-- TEST SECTION MOVIDO ARRIBA (antes de dolores) -->
 
 
 <!-- ════════════════════════════════════════════
@@ -1395,7 +1270,7 @@
         <div class="footer-links">
             <a href="https://wa.link/kzkc0n" target="_blank" rel="noopener noreferrer">WhatsApp</a>
             <a href="https://calendar.app.google/RtZqsytYkhhLRdze7" target="_blank" rel="noopener noreferrer">Agendar Demo</a>
-            <a href="/cdn-cgi/l/email-protection#1d7572717c5d7072737678646e7c6d6d6e33727371747378">Email</a>
+            <a href="mailto:hola@monkeysapps.online">Email</a>
         </div>
         <div class="footer-copy">
             © 2026 MONKEYS Lab · Software para laboratorios técnicos
@@ -1420,143 +1295,7 @@
 <!-- ═══════════════════════════════════════
   SCRIPTS
 ═══════════════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-/* ════════════════════════════════════════
-   MINI VSL ENGINE
-   ────────────────────────────────────────
-   🎬 PARA ACTIVAR VIMEO cuando tengas video:
-   Descomenta VIMEO_URL y pon tu ID de Vimeo.
-   El slideshow se oculta automáticamente.
-════════════════════════════════════════ */
-
-// const VIMEO_URL = 'https://player.vimeo.com/video/TU_ID_AQUI?autoplay=1&title=0&byline=0&portrait=0';
-
-(function(){
-    const slides      = Array.from(document.querySelectorAll('.vsl-slide'));
-    const progressEl  = document.getElementById('vslProgress');
-    const counterEl   = document.getElementById('vslCounter');
-    const playPauseEl = document.getElementById('vslPlayPause');
-    const player      = document.getElementById('vslPlayer');
-    const vimeoEl     = document.getElementById('vslVimeo');
-
-    let current   = 0;
-    let paused    = false;
-    let timer     = null;
-    let fillTimer = null;
-    let fillStart = null;
-    let fillDur   = 0;
-    let fillEl    = null;
-
-    // ── Vimeo swap ──
-    if(typeof VIMEO_URL !== 'undefined' && VIMEO_URL) {
-        vimeoEl.innerHTML = `<iframe src="${VIMEO_URL}" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
-        player.classList.add('has-video');
-        return; // stop slideshow engine
-    }
-
-    // ── Build progress segments ──
-    slides.forEach((_, i) => {
-        const seg = document.createElement('div');
-        seg.className = 'vsl-prog-seg';
-        seg.innerHTML = '<div class="vsl-prog-fill"></div>';
-        seg.addEventListener('click', () => goTo(i));
-        progressEl.appendChild(seg);
-    });
-
-    const segs = Array.from(progressEl.querySelectorAll('.vsl-prog-seg'));
-
-    function getSegs(){ return Array.from(progressEl.querySelectorAll('.vsl-prog-seg')); }
-
-    function goTo(idx){
-        // Mark all before as done
-        getSegs().forEach((s,i) => {
-            s.classList.remove('done');
-            s.querySelector('.vsl-prog-fill').style.width = i < idx ? '100%' : '0%';
-        });
-        slides.forEach(s => s.classList.remove('active'));
-        current = idx;
-        slides[current].classList.add('active');
-        counterEl.textContent = `${current+1} / ${slides.length}`;
-        if(!paused) startSegTimer();
-    }
-
-    function startSegTimer(){
-        clearTimeout(timer);
-        cancelAnimationFrame(fillTimer);
-
-        const seg  = getSegs()[current];
-        const fill = seg.querySelector('.vsl-prog-fill');
-        fillDur    = parseInt(slides[current].dataset.duration) || 5000;
-        fillStart  = performance.now();
-        fillEl     = fill;
-
-        function animate(now){
-            if(paused) return;
-            const elapsed = now - fillStart;
-            const pct     = Math.min(elapsed / fillDur * 100, 100);
-            fill.style.width = pct + '%';
-            if(pct < 100){
-                fillTimer = requestAnimationFrame(animate);
-            } else {
-                seg.classList.add('done');
-                if(current < slides.length - 1){
-                    goTo(current + 1);
-                }
-            }
-        }
-        fillTimer = requestAnimationFrame(animate);
-    }
-
-    window.vslTogglePause = function(){
-        paused = !paused;
-        playPauseEl.classList.toggle('paused', paused);
-        if(!paused){
-            // Resume from where fill left off
-            const fill   = getSegs()[current].querySelector('.vsl-prog-fill');
-            const pctNow = parseFloat(fill.style.width) || 0;
-            const remaining = fillDur * (1 - pctNow/100);
-            fillStart = performance.now() - (fillDur - remaining);
-            startSegTimer();
-        } else {
-            cancelAnimationFrame(fillTimer);
-        }
-    };
-
-    window.vslNext = function(){
-        if(current < slides.length - 1) goTo(current + 1);
-    };
-
-    window.vslPrev = function(){
-        if(current > 0) goTo(current - 1);
-    };
-
-    // ── Touch/swipe on mobile ──
-    let touchStartX = 0;
-    player.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, {passive:true});
-    player.addEventListener('touchend',   e => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
-        if(Math.abs(dx) > 40){ dx < 0 ? vslNext() : vslPrev(); }
-    }, {passive:true});
-
-    // ── Keyboard ──
-    document.addEventListener('keydown', e => {
-        if(e.key === 'ArrowRight') vslNext();
-        if(e.key === 'ArrowLeft')  vslPrev();
-        if(e.key === ' '){ e.preventDefault(); vslTogglePause(); }
-    });
-
-    // ── Start ──
-    goTo(0);
-
-    // Auto-track when VSL section is visible
-    const vslObs = new IntersectionObserver(entries => {
-        entries.forEach(e => {
-            if(e.isIntersecting){ trackEvent('vsl','view','VSL Section visible'); vslObs.disconnect(); }
-        });
-    }, {threshold:.5});
-    vslObs.observe(document.getElementById('vsl'));
-})();
-
+<script>
 /* ── SCROLL REVEAL ── */
 const allReveal = document.querySelectorAll('.scroll-reveal, .sr-left, .sr-right');
 const ro = new IntersectionObserver((entries) => {
@@ -1574,90 +1313,158 @@ document.querySelectorAll('.faq-q').forEach(q => {
     });
 });
 
-/* ── TEST / DIAGNOSTIC ── */
-let currentStep = 1;
-const totalSteps = 6;
-const scores = [];
+/* ── TEST DE DIAGNÓSTICO v2 (mk- prefijo para evitar conflictos) ── */
+const mkScores = {};
+const mkAreas = ['Registro','Finanzas','Reclamaciones','Inventario','Equipo','Escalabilidad'];
+let mkStep = 1;
+const MK_TOTAL = 6;
 
-function selectOpt(el) {
-    // Deselect siblings
-    el.closest('.test-options').querySelectorAll('.test-opt').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    // Enable next btn
-    const nextBtn = el.closest('.test-step').querySelector('.test-btn-next');
-    if(nextBtn) nextBtn.disabled = false;
-    // Store score for current step
-    scores[currentStep - 1] = parseInt(el.getAttribute('data-val'));
+// Auto-detect país
+const mkCountryCodes = {CO:'+57',CL:'+56',PE:'+51',EC:'+593',MX:'+52',AR:'+54',VE:'+58',US:'+1',CA:'+1',ES:'+34',UY:'+598',BO:'+591',PY:'+595',CR:'+506',PA:'+507',DO:'+1'};
+fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+    const c = mkCountryCodes[d.country_code];
+    if(c){const s=document.getElementById('mkCountry');for(let i=0;i<s.options.length;i++){if(s.options[i].value===c){s.selectedIndex=i;break;}}}
+}).catch(()=>{});
+
+function mkScrollToCard(){
+    const card = document.getElementById('mkTestCard');
+    if(!card) return;
+    const top = card.getBoundingClientRect().top + window.scrollY - 20;
+    window.scrollTo({top, behavior:'smooth'});
 }
 
-function nextStep() {
-    if(currentStep < totalSteps) {
-        showStep(currentStep + 1);
+function mkSelectOpt(el){
+    el.closest('.mk-options').querySelectorAll('.mk-opt').forEach(o=>o.classList.remove('mk-sel'));
+    el.classList.add('mk-sel');
+    const stepNum = parseInt(el.closest('.mk-step').dataset.step);
+    mkScores[stepNum] = parseInt(el.dataset.val);
+    const btn = document.getElementById('mkNext'+stepNum);
+    if(btn) btn.disabled = false;
+}
+
+function mkShowStep(n){
+    document.querySelector('.mk-step[data-step="'+mkStep+'"]').classList.remove('mk-active');
+    mkStep = n;
+    document.querySelector('.mk-step[data-step="'+mkStep+'"]').classList.add('mk-active');
+    const pct = Math.round((mkStep-1)/MK_TOTAL*100);
+    document.getElementById('mkProgFill').style.width = pct+'%';
+    document.getElementById('mkProgLabel').textContent = 'Pregunta '+mkStep+' de '+MK_TOTAL;
+    document.getElementById('mkProgPct').textContent = pct+'%';
+    const nb = document.getElementById('mkNext'+mkStep);
+    if(nb) nb.disabled = mkScores[mkStep]===undefined;
+    mkScrollToCard();
+}
+
+function mkNextStep(from){
+    if(mkScores[from]===undefined){
+        const b=document.getElementById('mkNext'+from);
+        b.style.animation='none';void b.offsetWidth;b.style.animation='';
+        return;
     }
+    mkShowStep(from+1);
+}
+function mkPrevStep(from){ mkShowStep(from-1); }
+
+function mkShowCapture(){
+    if(mkScores[6]===undefined) return;
+    document.querySelectorAll('.mk-step').forEach(s=>s.classList.remove('mk-active'));
+    document.getElementById('mkProgWrap').style.display='none';
+    document.getElementById('mkGate').classList.add('mk-active');
+    mkScrollToCard();
 }
 
-function prevStep() {
-    if(currentStep > 1) {
-        showStep(currentStep - 1);
-    }
+function mkSubmit(){
+    const name = document.getElementById('mkName').value.trim();
+    const phone = document.getElementById('mkPhone').value.trim();
+    const code = document.getElementById('mkCountry').value;
+    const consent = document.getElementById('mkConsent').checked;
+    let ok = true;
+    if(!name){document.getElementById('mkName').classList.add('mk-err');ok=false;}
+    else document.getElementById('mkName').classList.remove('mk-err');
+    if(!phone){document.getElementById('mkPhone').classList.add('mk-err');ok=false;}
+    else document.getElementById('mkPhone').classList.remove('mk-err');
+    if(!consent){ok=false;}
+    if(!ok) return;
+
+    const fullPhone = code + ' ' + phone;
+    const city = document.getElementById('mkCity').value.trim();
+
+    // ── WEBHOOK → Make/Zapier ──
+    // fetch('TU_WEBHOOK_URL', {method:'POST', headers:{'Content-Type':'application/json'},
+    //   body: JSON.stringify({name, phone:fullPhone, city, scores:mkScores, timestamp:new Date().toISOString()})});
+
+    document.getElementById('mkGate').classList.remove('mk-active');
+    mkShowResult(name, fullPhone);
 }
 
-function showStep(n) {
-    document.querySelector(`.test-step[data-step="${currentStep}"]`).classList.remove('active');
-    currentStep = n;
-    document.querySelector(`.test-step[data-step="${currentStep}"]`).classList.add('active');
-    // Update progress bar
-    document.getElementById('progressBar').style.width = ((currentStep - 1) / totalSteps * 100) + '%';
-    // Reset next btn if no answer yet for this step
-    const nextBtn = document.querySelector(`.test-step[data-step="${currentStep}"] .test-btn-next`);
-    if(nextBtn && scores[currentStep - 1] === undefined) nextBtn.disabled = true;
-    else if(nextBtn) nextBtn.disabled = false;
-}
+function mkShowResult(name, phone){
+    const total = Object.values(mkScores).reduce((a,b)=>a+b,0);
+    const max = MK_TOTAL*2;
+    let color,badgeText,badgeBg,title,desc,ctaTitle,ctaText,tier;
 
-function showResult() {
-    // Store last answer
-    const lastStep = document.querySelector(`.test-step[data-step="${totalSteps}"]`);
-    const selectedOpt = lastStep.querySelector('.test-opt.selected');
-    if(selectedOpt) scores[totalSteps - 1] = parseInt(selectedOpt.getAttribute('data-val'));
-
-    // Hide all steps
-    document.querySelectorAll('.test-step').forEach(s => s.style.display = 'none');
-    document.getElementById('progressBar').style.width = '100%';
-
-    // Calculate total
-    const total = scores.reduce((a, b) => (a || 0) + (b || 0), 0);
-    const maxScore = totalSteps * 2; // 12
-    const pct = Math.round(total / maxScore * 100);
-
-    // Determine tier
-    let title, desc, ctaText, ringColor;
-    if(total >= 10) {
-        title = '¡Tu negocio es un éxito total!';
-        desc = 'Tienes control real, datos claros y decisiones basadas en información concreta. Estás en el grupo elite. Aun así, en la demo te mostramos cómo llevar ese control al siguiente nivel y escalar con confianza.';
-        ctaText = '<strong>¿Quieres ver cómo los mejores se hacen aún mejores?</strong> Agenda una demo y te mostramos lo que estás dejando sobre la mesa.';
-        ringColor = '#1DB954';
-    } else if(total >= 5) {
-        title = '¡Ánimo! Puedes hacerlo mucho mejor.';
-        desc = 'Tienes bases, pero hay brechas importantes en la información con la que tomas decisiones. Los negocios que más crecen son los que cierran esas brechas antes que la competencia.';
-        ctaText = '<strong>En minutos te mostramos exactamente qué brechas tienes y cómo cerrarlas.</strong> La diferencia entre donde estás y donde quieres estar puede ser más pequeña de lo que piensas.';
-        ringColor = '#f59e0b';
+    if(total>=10){
+        tier='elite'; color='#1DB954'; badgeText='🏆 Operación sólida'; badgeBg='rgba(29,185,84,.12)';
+        title=(name?name+', ':'')+'tu base es fuerte.';
+        desc='Tienes más control que el 90% de los laboratorios técnicos. En la demo te mostramos cómo los mejores siguen mejorando — y cómo escalar sin que todo dependa de ti.';
+        ctaTitle='El siguiente nivel te espera';
+        ctaText='Los laboratorios con operación sólida que implementan MonKeys Lab descubren en promedio <strong>entre $2M y $5M en eficiencias</strong> que no sabían que existían. ¿Agendamos la demo?';
+    } else if(total>=5){
+        tier='medio'; color='#F59E0B'; badgeText='⚠️ Hay brechas importantes'; badgeBg='rgba(245,158,11,.12)';
+        title=(name?name+', ':'')+'vas bien — pero hay plata escapándose.';
+        desc='Tienes algo organizado, pero hay puntos ciegos costándote: reclamaciones que no puedes defender, decisiones con información incompleta, y crecimiento frenado por el desorden.';
+        ctaTitle='Cierra las brechas antes de que cuesten más';
+        ctaText='Cada semana con estas brechas abiertas es dinero que se va. <strong>En unos minutos te mostramos exactamente dónde están y cómo cerrarlas</strong> — e implementamos en 48h.';
     } else {
-        title = 'Necesitas actuar con urgencia.';
-        desc = 'Estás tomando decisiones a ciegas en un negocio competitivo. Cada semana sin datos claros es dinero que se va sin que puedas verlo. Pero la buena noticia: esto tiene solución rápida.';
-        ctaText = '<strong>No sigas operando a ciegas.</strong> En minutos te mostramos cómo tener el control total que necesitas — e implementamos en 48 horas.';
-        ringColor = '#E8311A';
+        tier='critico'; color='#E8311A'; badgeText='🚨 Acción urgente necesaria'; badgeBg='rgba(232,49,26,.1)';
+        title=(name?name+', ':'')+'estás perdiendo plata hoy.';
+        desc='No es un juicio — es un diagnóstico. Estás operando sin las herramientas básicas para proteger tu negocio. Cada día así tiene un costo real en reclamaciones, tiempo y dinero.';
+        ctaTitle='Esto tiene solución. Rápido.';
+        ctaText='<strong>En 48 horas puedes estar operando con control total.</strong> Agenda la demo y te muestro exactamente cómo. Gratis, sin compromiso, sin rodeos.';
     }
 
-    const ring = document.getElementById('scoreRing');
-    ring.style.background = ringColor;
-    ring.style.boxShadow = `0 0 0 6px ${ringColor}22, 0 0 40px ${ringColor}44`;
-    document.getElementById('scoreNum').textContent = total;
-    document.getElementById('resultTitle').textContent = title;
-    document.getElementById('resultDesc').textContent = desc;
-    document.getElementById('resultCTAText').innerHTML = ctaText;
+    const ring=document.getElementById('mkScoreRing');
+    ring.style.background=color;
+    ring.style.boxShadow=`0 0 0 6px ${color}20, 0 8px 32px ${color}44`;
+    document.getElementById('mkScoreDisplay').textContent=total+'/'+max;
+    const badge=document.getElementById('mkBadge');
+    badge.textContent=badgeText; badge.style.background=badgeBg; badge.style.color=color;
+    document.getElementById('mkResultTitle').textContent=title;
+    document.getElementById('mkResultDesc').textContent=desc;
+    document.getElementById('mkCtaTitle').textContent=ctaTitle;
+    document.getElementById('mkCtaText').innerHTML=ctaText;
 
-    document.getElementById('testResult').classList.add('show');
-    trackEvent('test', 'complete', `Score: ${total}`);
+    const breakdownHTML = mkAreas.map((area,i)=>{
+        const s=mkScores[i+1]||0; const pct=(s/2)*100;
+        const bc=s===2?'#1DB954':s===1?'#F59E0B':'#E8311A';
+        return `<div class="mk-breakdown-item"><span class="mk-bl">${area}</span><div class="mk-bbar-wrap"><div class="mk-bbar" style="width:${pct}%;background:${bc}"></div></div><span class="mk-bscore" style="color:${bc}">${s}/2</span></div>`;
+    }).join('');
+    document.getElementById('mkBreakdown').innerHTML=breakdownHTML;
+
+    const waMsg=encodeURIComponent(`Hola Manuel, hice el test de diagnóstico de MonKeys Lab. Mi nombre es ${name||''} y quisiera ver la demo.`);
+    document.getElementById('mkCtaWA').href=`https://wa.link/7o77zu?text=${waMsg}`;
+
+    document.getElementById('mkResult').classList.add('mk-active');
+    mkScrollToCard();
+    trackEvent('test','complete',`Score:${total} Tier:${tier}`);
+}
+
+function mkRestart(){
+    Object.keys(mkScores).forEach(k=>delete mkScores[k]);
+    mkStep=1;
+    document.querySelectorAll('.mk-opt').forEach(o=>o.classList.remove('mk-sel'));
+    document.querySelectorAll('[id^=mkNext]').forEach(b=>b.disabled=true);
+    document.getElementById('mkResult').classList.remove('mk-active');
+    document.getElementById('mkGate').classList.remove('mk-active');
+    document.getElementById('mkProgWrap').style.display='';
+    document.getElementById('mkName').value='';
+    document.getElementById('mkPhone').value='';
+    document.getElementById('mkCity').value='';
+    document.getElementById('mkConsent').checked=false;
+    document.querySelector('.mk-step[data-step="1"]').classList.add('mk-active');
+    document.getElementById('mkProgFill').style.width='0%';
+    document.getElementById('mkProgLabel').textContent='Pregunta 1 de 6';
+    document.getElementById('mkProgPct').textContent='0%';
+    mkScrollToCard();
 }
 
 /* ── ANALYTICS ── */
@@ -1669,4 +1476,12 @@ function trackEvent(category, action, label) {
 /* ── DEEP SCROLL TRACKING ── */
 let deepScrolled = false;
 window.addEventListener('scroll', () => {
-    if(!deepScrolled && window.scrollY / document.body.scrollHeight > 0.5)
+    if(!deepScrolled && window.scrollY / document.body.scrollHeight > 0.5) {
+        trackEvent('engagement','scroll_50','50% de la página');
+        deepScrolled = true;
+    }
+}, { passive: true });
+</script>
+
+</body>
+</html>
